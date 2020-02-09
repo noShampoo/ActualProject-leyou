@@ -40,6 +40,12 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>${pageHelper.starter.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
         <!-- mysql驱动 -->
         <dependency>
             <groupId>mysql</groupId>

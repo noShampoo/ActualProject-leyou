@@ -1,4 +1,4 @@
-package per.bhj.leyou.service.item.service;
+package per.bhj.leyou.item.service;
 
 import org.springframework.stereotype.Service;
 import per.bhj.leyou.item.pojo.Item;

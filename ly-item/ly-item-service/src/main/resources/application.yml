@@ -7,6 +7,8 @@ spring:
     url: jdbc:mysql://localhost:3306/heima
     username: root
     password: 123
+#    因为这里springboot会通过url进行只能推断，会自动添加driver
+#    driver-class-name:
     hikari:
       maximum-pool-size: 30
       minimum-idle: 10
@@ -17,6 +19,7 @@ eureka:
   instance:
     lease-renewal-interval-in-seconds: 5 # 每隔5秒发送一次心跳
     lease-expiration-duration-in-seconds: 10 # 10秒不发送就过期
+#    保证拿到的是127.0.0.1
     prefer-ip-address: true
     ip-address: 127.0.0.1
     instance-id: ${spring.application.name}:${server.port}

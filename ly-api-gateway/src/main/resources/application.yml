@@ -14,7 +14,9 @@ eureka:
     instance-id: ${spring.application.name}:${server.port}
 zuul:
   prefix: /api # 添加路由前缀
-  retryable: true
+  retryable: true # 将商品微服务映射到/item/**
+  routes:
+    item-service: /item/**
 ribbon:
   ConnectTimeout: 250 # 连接超时时间(ms)
   ReadTimeout: 2000 # 通信超时时间(ms)

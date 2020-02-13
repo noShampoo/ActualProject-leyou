@@ -6,7 +6,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/heima
     username: root
-    password: 123
+    password: 123456
 #    因为这里springboot会通过url进行只能推断，会自动添加driver
 #    driver-class-name:
     hikari:

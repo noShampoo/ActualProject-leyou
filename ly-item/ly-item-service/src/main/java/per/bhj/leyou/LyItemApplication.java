@@ -1,13 +1,16 @@
 package per.bhj.leyou;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class LyItemService {
+@MapperScan("per.bhj.leyou.item.mapper")
+public class LyItemApplication {
     public static void main(String[] args) {
-        SpringApplication.run(LyItemService.class, args);
+        SpringApplication.run(LyItemApplication.class, args);
     }
 }

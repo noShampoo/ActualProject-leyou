@@ -14,6 +14,8 @@ public enum ExceptionEnum {
     CATEGORY_NOT_FOUND(404, "商品分类没有查到"),
     BRAND_NOT_FOUND(404, "品牌没有查到"),
     BRAND_SAVE_FAIL(500, "品牌新增失败"),
+    FILE_UPLOAD_FAIL(500, "上传文件失败"),
+    INVALID_FILE_TYPE(500, "无效的上传文件类型"),
     ;
     private int code;
     private String msg;

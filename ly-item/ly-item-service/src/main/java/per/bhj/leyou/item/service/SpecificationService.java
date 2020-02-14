@@ -28,4 +28,8 @@ public class SpecificationService {
         }
         return specificationList;
     }
+
+//    public List<Specification> queryParamByList(Long gid, Long cid) {
+//        return null;
+//    }
 }

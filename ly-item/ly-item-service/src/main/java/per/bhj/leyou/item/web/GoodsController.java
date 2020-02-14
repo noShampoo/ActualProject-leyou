@@ -5,9 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import per.bhj.leyou.common.vo.PageResult;
+import per.bhj.leyou.item.pojo.Sku;
 import per.bhj.leyou.item.pojo.Spu;
 import per.bhj.leyou.item.pojo.SpuBo;
 import per.bhj.leyou.item.service.GoodsService;
+
+import java.util.List;
 
 @RestController
 public class GoodsController {
@@ -46,6 +49,31 @@ public class GoodsController {
         try {
             this.goodsService.save(spu);
             return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("sku/list")
+    public ResponseEntity<List<Sku>> querySkuBySpuId(@RequestParam("id") Long id) {
+        List<Sku> skus = this.goodsService.querySkuBySpuId(id);
+        if (skus == null || skus.size() == 0) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(skus);
+    }
+
+    /**
+     * 新增商品
+     * @param spu
+     * @return
+     */
+    @PutMapping
+    public ResponseEntity<Void> updateGoods(@RequestBody SpuBo spu) {
+        try {
+            this.goodsService.update(spu);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

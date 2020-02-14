@@ -52,4 +52,20 @@ public class BrandService {
         PageInfo<Brand> pageInfo = new PageInfo(brandList);
         return new PageResult<>(pageInfo.getTotal(), brandList);
     }
+
+    public void saveBrand(Brand brand, List<Long> cids) {
+        //新增品牌
+        brand.setId(null);
+        int insert = brandMapper.insert(brand);
+//        brandMapper.insertSelective();使用该方法会选择性添加，只讲非null字段添加进去
+        if (insert != 1) {
+            throw new LyException(ExceptionEnum.BRAND_SAVE_FAIL);
+        }
+        //新增中间表数据
+        for (Long cid :
+                cids) {
+            int count = brandMapper.insertCategoryBrand(cid, brand.getId());
+            if (count != 1) throw new LyException(ExceptionEnum.BRAND_SAVE_FAIL);
+        }
+    }
 }

@@ -11,6 +11,7 @@ import per.bhj.leyou.item.pojo.Category;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryService {
@@ -28,5 +29,9 @@ public class CategoryService {
             throw new LyException(ExceptionEnum.CATEGORY_NOT_FOUND);
         }
         return categoryList;
+    }
+
+    public List<String> queryNameByIds(List<Long> ids) {
+        return this.categoryMapper.selectByIdList(ids).stream().map(Category::getName).collect(Collectors.toList());
     }
 }

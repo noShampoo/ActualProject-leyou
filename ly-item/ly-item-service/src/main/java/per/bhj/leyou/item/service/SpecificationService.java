@@ -23,6 +23,7 @@ public class SpecificationService {
         //开始查询
         List<Specification> specificationList = specificationMapper.select(specification);
         if (CollectionUtils.isEmpty(specificationList)) {
+            //没查到对应的商品规格组
             throw new LyException(ExceptionEnum.SPECIFICATION_NOT_FOUND);
         }
         return specificationList;

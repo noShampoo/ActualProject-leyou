@@ -68,4 +68,8 @@ public class BrandService {
             if (count != 1) throw new LyException(ExceptionEnum.BRAND_SAVE_FAIL);
         }
     }
+
+    public List<Brand> queryBrandByCid(Long cid) {
+        return brandMapper.queryByCategoryId(cid);
+    }
 }

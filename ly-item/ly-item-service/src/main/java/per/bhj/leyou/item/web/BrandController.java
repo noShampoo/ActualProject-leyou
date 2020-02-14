@@ -3,7 +3,10 @@ package per.bhj.leyou.item.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
+import per.bhj.leyou.common.enums.ExceptionEnum;
+import per.bhj.leyou.common.exception.LyException;
 import per.bhj.leyou.common.vo.PageResult;
 import per.bhj.leyou.item.pojo.Brand;
 import per.bhj.leyou.item.service.BrandService;
@@ -29,10 +32,19 @@ public class BrandController {
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<Void> saveBrand(Brand brand, @RequestParam("cids")List<Long> cids) {
         brandService.saveBrand(brand, cids);
         //注：新增，创建业务成功后返回CREATED(201)状态码，如果无返回体就用build不用body
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @GetMapping("cid/{cid}")
+    public ResponseEntity<List<Brand>> queryBrandListByCid(@PathVariable("cid") Long cid) {
+        List<Brand> brandList = brandService.queryBrandByCid(cid);
+        if (CollectionUtils.isEmpty(brandList)) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(brandList);
     }
 }
